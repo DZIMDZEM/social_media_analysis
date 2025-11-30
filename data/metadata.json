@@ -1,0 +1,11 @@
+{
+  "dataset": "Zachary Karate Club",
+  "source": "NetworkX built-in dataset",
+  "description": "Social network of friendships between 34 members of a karate club at a US university in the 1970s. The network captures the split of the club into two factions.",
+  "nodes": 34,
+  "edges": 78,
+  "reference": "Zachary, W. W. (1977). An information flow model for conflict and fission in small groups. Journal of anthropological research, 33(4), 452-473.",
+  "attributes": {
+    "club": "Faction membership (Mr. Hi or Officer)"
+  }
+}
