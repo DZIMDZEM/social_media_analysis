@@ -4,6 +4,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import networkx as nx
 from sklearn.manifold import MDS, TSNE
+from sklearn.decomposition import PCA
+from sklearn.preprocessing import StandardScaler
 import seaborn as sns
 
 
@@ -169,6 +171,34 @@ def plot_centrality_heatmap(G, centralities_dict, title="Centrality Heatmap", ax
     
     plt.tight_layout()
     return fig, ax
+
+
+def compute_pca_embedding(features, n_components=2, random_state=42):
+    """
+    Compute PCA embedding of node features.
+    
+    Parameters:
+    -----------
+    features : numpy.ndarray
+        Feature matrix
+    n_components : int
+        Number of dimensions
+    random_state : int
+        Random seed (for consistency, though PCA is deterministic)
+        
+    Returns:
+    --------
+    numpy.ndarray : Embedded coordinates
+    sklearn.decomposition.PCA : Fitted PCA model
+    """
+    # Standardize features for PCA
+    scaler = StandardScaler()
+    features_scaled = scaler.fit_transform(features)
+    
+    # Compute PCA
+    pca = PCA(n_components=n_components, random_state=random_state)
+    embedding = pca.fit_transform(features_scaled)
+    return embedding, pca
 
 
 def compute_mds_embedding(features, n_components=2, random_state=42):
